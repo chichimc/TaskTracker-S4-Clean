@@ -1,9 +1,4 @@
-# 👷‍♀️ GitHub Actions Workflow for Python Testing and Code Coverage
-
-# 🟡 This workflow will run automatically:
-# - when code is pushed to the "main" branch
-# - when a pull request is opened against the "main" branch
-# - unless the change is only to ignored files like markdown, docs, or README
+# 🎯 Clean CI Configuration for Sprint 4 Database Integration
 
 name: Python application
 
@@ -11,80 +6,85 @@ on:
   push:
     branches: [ "main" ]
     paths-ignore:
-      - '**.md'           # Skip running CI if only markdown files change
-      - 'docs/**'         # Skip if only docs are updated
-      - '**.rst'          # Skip reStructuredText files
-      - 'LICENSE'         # Skip license updates
-      - '.gitignore'      # Skip gitignore-only changes
-      - 'README*'         # Skip README edits
+      - '**.md'
+      - 'docs/**'
+      - 'README*'
   pull_request:
     branches: [ "main" ]
     paths-ignore:
       - '**.md'
       - 'docs/**'
-      - '**.rst'
-      - 'LICENSE'
-      - '.gitignore'
       - 'README*'
 
 jobs:
-  build:  # 🔨 Job name
-    runs-on: ubuntu-latest  # 🖥️ This job will run in a virtual machine with Ubuntu
+  test:
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Get your code
       - name: Checkout Repository
         uses: actions/checkout@v4
-      # 📂 This downloads your repository's files into the CI environment
 
-      # Step 2: Set up Python
-      - name: Set up Python
+      - name: Set up Python 3.13.5
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13.5"  # Python version must match your local dev environment
+          python-version: "3.13.5"
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip  # Upgrade pip
-          pip install -r requirements.txt      # Install all Python packages listed in requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
+      - name: Prepare test environment
+        run: |
+          # Set testing environment variables
+          export TESTING=true
+          export PYTHONDONTWRITEBYTECODE=1
+          # Suppress ResourceWarnings for cleaner CI output
+          export PYTHONWARNINGS="ignore:unclosed:ResourceWarning"
+          # Create necessary directories
+          mkdir -p app/data
+          # Clean up any existing files
+          rm -f tasks.db app/data/tasks.json
+          echo "✅ Test environment prepared"
 
-      # Step 4: Start Flask server in background
+      - name: Ensure clean database file
+        run: |
+          rm -f tasks.db
+
       - name: Start Flask server in background
         run: |
-          nohup python -m app.main &
+          export TESTING=true
+          cd $GITHUB_WORKSPACE
+          nohup python -m app.main --no-debug --no-reload &
+          sleep 3
 
-      # Step 5: Wait for Flask server to be ready (health check loop)
       - name: Wait for Flask server to be ready
         run: |
           for i in {1..20}; do
-            if curl -s http://localhost:5000/api/tasks/health > /dev/null; then
+            if curl -s http://localhost:5000/api/health > /dev/null; then
               echo "Flask server is up!"
               break
             fi
-            echo "Waiting for Flask server..."
+            echo "Waiting for Flask server... ($i/20)"
             sleep 1
           done
+          # Final check
+          if curl -s http://localhost:5000/api/health > /dev/null; then
+            echo "Server health check passed"
+          else
+            echo "Server health check failed"
+            exit 1
+          fi
 
-      # Step 6: Run tests with coverage tracking
-      - name: Run tests with coverage
+      - name: Run all tests with coverage
         run: |
-          pytest --cov=app --cov-report=term-missing
-          #  This runs pytest and measures how much of the 'app' folder is tested
-          # --cov=app → tracks coverage in the 'app' directory
-          # --cov-report=term-missing → shows which lines were not tested
-
-      # (Optional) Step 5: Enforce a minimum test coverage percentage
-      # - name: Enforce minimum coverage
-      #   run: |
-      #     coverage report --fail-under=80
-      #     # ❌ This will fail the build if total coverage is below 80%
-
-      # (Optional) Step 6: Save the HTML version of the coverage report as an artifact
-      # - name: Upload coverage HTML report
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: coverage-html
-      #     path: htmlcov/
-      #     # 📁 This allows you to download and view the full HTML coverage report after CI runs
+          # Set environment variables for testing
+          export TESTING=true
+          export PYTHONDONTWRITEBYTECODE=1
+          export PYTHONWARNINGS="ignore:unclosed:ResourceWarning"
+          # Run all tests with coverage tracking and output results to XML
+          pytest --cov=app --cov-report=term-missing --cov-report=html --junitxml=results.xml
+        env:
+          TESTING: true
+          PYTHONDONTWRITEBYTECODE: 1
+          PYTHONWARNINGS: "ignore:unclosed:ResourceWarning"
