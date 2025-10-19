@@ -2,7 +2,6 @@
 
 import pytest
 from app.main import app
-from app.services.task_storage import save_tasks
 
 def test_invalid_json_returns_400(client):
     """
