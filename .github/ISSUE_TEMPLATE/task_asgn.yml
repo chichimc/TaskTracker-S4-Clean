@@ -1,0 +1,75 @@
+name: Task Assignment
+description: Assign a specific task to a team member
+title: "[TASK] "
+labels: [task]
+body:
+  - type: markdown
+    attributes:
+      value: "# Task Assignment Form"
+
+  - type: input
+    id: task-title
+    attributes:
+      label: Task Title
+      description: Provide a short and descriptive title for the task.
+      placeholder: "e.g., Implement login feature"
+    validations:
+      required: true
+
+  - type: textarea
+    id: task-description
+    attributes:
+      label: Task Description
+      description: Detailed description of the task to be completed.
+      placeholder: "Describe the task in detail..."
+    validations:
+      required: true
+
+  - type: input
+    id: assigned-to
+    attributes:
+      label: Assigned To
+      description: The name or GitHub username of the team member assigned to this task.
+      placeholder: "e.g., @username"
+    validations:
+      required: true
+
+  - type: input
+    id: deadline
+    attributes:
+      label: Deadline
+      description: The due date for completing this task.
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: Select the priority level of this task.
+      options:
+        - Low
+        - Medium
+        - High
+        - Urgent
+    validations:
+      required: true
+
+  - type: textarea
+    id: relevant-parts
+    attributes:
+      label: Relevant Project Parts
+      description: Specify the parts of the project this task is related to.
+      placeholder: "e.g., Backend, Frontend, Database"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes
+      description: Any additional notes or information regarding the task.
+      placeholder: "Any other details or specific instructions..."
+    validations:
+      required: false

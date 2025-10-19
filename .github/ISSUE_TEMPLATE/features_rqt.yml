@@ -1,0 +1,62 @@
+name: Feature Request
+description: Suggest an idea for this project
+title: "[FEATURE] "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: "# GitHub Issue: Feature Request Template"
+
+  - type: input
+    id: title
+    attributes:
+      label: Feature Title
+      description: Provide a short and descriptive title for the feature.
+      placeholder: "e.g., Add night mode feature"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Feature Summary
+      description: A brief summary of the feature you are requesting.
+      placeholder: "A short description of the feature..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation and Goals
+      description: Explain why this feature is important and how it will benefit the project.
+      placeholder: "Why this feature is necessary and what it aims to achieve..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: detailed-explanation
+    attributes:
+      label: Detailed Explanation
+      description: Provide a more detailed explanation of the feature. Include any technical details, mockups, or examples.
+      placeholder: "A detailed explanation of the feature, including any technical specifics..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Describe any alternative solutions or features you've considered.
+      placeholder: "Any alternative solutions or features that could also fulfill this need..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context or screenshots about the feature request here.
+      placeholder: "Any additional context, screenshots, or prototypes for the feature..."
+    validations:
+      required: false

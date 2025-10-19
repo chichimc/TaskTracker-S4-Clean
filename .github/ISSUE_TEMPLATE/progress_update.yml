@@ -1,0 +1,44 @@
+name: Progress Update
+description: Update the status of assigned tasks or overall project progress
+title: "[PROGRESS UPDATE] "
+labels: [progress]
+body:
+  - type: markdown
+    attributes:
+      value: "# Progress Update Form"
+
+  - type: textarea
+    id: task-or-project-part
+    attributes:
+      label: Task/Project Part
+      description: Specify the task or part of the project you are updating.
+      placeholder: "e.g., Frontend development, Documentation, etc."
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-status
+    attributes:
+      label: Current Status
+      description: Describe the current status of the task or project part.
+      placeholder: "Current progress and accomplishments..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: blockers
+    attributes:
+      label: Blockers or Issues
+      description: Any challenges or issues encountered that are hindering progress.
+      placeholder: "Describe any blockers or issues faced..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: assistance-needed
+    attributes:
+      label: Assistance Needed
+      description: Specify if you need help or additional resources.
+      placeholder: "Mention if you need any assistance or resources..."
+    validations:
+      required: false

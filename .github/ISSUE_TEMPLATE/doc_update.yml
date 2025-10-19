@@ -1,0 +1,62 @@
+name: Documentation Update Request
+description: Request updates or additions to project documentation
+title: "[DOC UPDATE] "
+labels: [documentation]
+body:
+  - type: markdown
+    attributes:
+      value: "# Documentation Update Request"
+
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: Provide a short and descriptive title for your request.
+      placeholder: "e.g., Update installation guide for new version"
+    validations:
+      required: true
+
+  - type: textarea
+    id: sections
+    attributes:
+      label: Sections/Pages Needing Updates
+      description: Specify which sections or pages of the documentation need updating.
+      placeholder: "List the sections or pages that need updates..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-changes
+    attributes:
+      label: Suggested Changes
+      description: Detail the changes you suggest for the documentation.
+      placeholder: "Describe in detail the changes you're suggesting..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reasons
+    attributes:
+      label: Reasons for Change
+      description: Explain why these changes are necessary.
+      placeholder: "Explain why these updates or additions are needed..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reference-materials
+    attributes:
+      label: Reference Materials
+      description: Provide any reference materials that can help in making the suggested changes.
+      placeholder: "Links to relevant materials, documents, etc."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the documentation update request.
+      placeholder: "Any additional information or context regarding the update..."
+    validations:
+      required: false

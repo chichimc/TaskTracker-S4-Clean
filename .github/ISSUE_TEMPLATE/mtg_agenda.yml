@@ -1,0 +1,53 @@
+name: Meeting Agenda
+description: Plan and outline the agenda for upcoming meetings
+title: "[MEETING AGENDA] "
+labels: [meeting, agenda]
+body:
+  - type: markdown
+    attributes:
+      value: "# Meeting Agenda Form"
+
+  - type: input
+    id: meeting-date-time
+    attributes:
+      label: Date and Time of the Meeting
+      description: Specify when the meeting will take place.
+      placeholder: "YYYY-MM-DD at HH:MM"
+    validations:
+      required: true
+
+  - type: textarea
+    id: agenda-items
+    attributes:
+      label: Items to Discuss
+      description: List the items that need to be discussed in the meeting.
+      placeholder: "1. Item 1\n2. Item 2\n3. Item 3"
+    validations:
+      required: true
+
+  - type: textarea
+    id: specific-questions
+    attributes:
+      label: Specific Questions
+      description: Any specific questions that need addressing during the meeting.
+      placeholder: "List any specific questions to be addressed..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected-outcomes
+    attributes:
+      label: Expected Outcomes
+      description: What you expect to achieve by the end of the meeting.
+      placeholder: "Describe the expected outcomes of the meeting..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: pre-meeting-preparation
+    attributes:
+      label: Pre-Meeting Preparation
+      description: Any preparation or prior work required before the meeting.
+      placeholder: "Any reading, research, or work to be done before the meeting..."
+    validations:
+      required: false

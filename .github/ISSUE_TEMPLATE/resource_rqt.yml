@@ -1,0 +1,57 @@
+name: Resource Request
+description: Request additional resources or help for the project
+title: "[RESOURCE REQUEST] "
+labels: [resource]
+body:
+  - type: markdown
+    attributes:
+      value: "# Resource Request Form"
+
+  - type: input
+    id: resource-title
+    attributes:
+      label: Resource Title
+      description: Provide a short and descriptive title for your resource request.
+      placeholder: "e.g., Need access to cloud storage service"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: resource-type
+    attributes:
+      label: Type of Resource
+      description: Specify the type of resource needed.
+      options:
+        - Software
+        - Hardware
+        - Informational Material
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: resource-description
+    attributes:
+      label: Resource Description
+      description: Describe the resource you are requesting and its intended use.
+      placeholder: "Detailed description of the resource and how it will be used..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason-for-request
+    attributes:
+      label: Reason for Request
+      description: Explain why this resource is necessary for the project.
+      placeholder: "Why this resource is needed for the project..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency Level
+      description: Select the urgency level of this request.
+      options:
+        - Low
+        - Medium

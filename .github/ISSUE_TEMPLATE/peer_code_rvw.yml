@@ -1,0 +1,53 @@
+name: Peer Review
+description: Submit an item for peer review within the project
+title: "[PEER REVIEW] "
+labels: [review]
+body:
+  - type: markdown
+    attributes:
+      value: "# Peer Review Form"
+
+  - type: input
+    id: item-title
+    attributes:
+      label: Item Title
+      description: Provide a title or brief description of the item you are submitting for review.
+      placeholder: "e.g., Database Schema Design, Homepage UI Mockup"
+    validations:
+      required: true
+
+  - type: textarea
+    id: item-description
+    attributes:
+      label: Item Description
+      description: Describe the item being reviewed. Include links or references if applicable.
+      placeholder: "Detailed description of the item submitted for review..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: review-criteria
+    attributes:
+      label: Review Criteria
+      description: Specify what aspects or criteria should be focused on in the review.
+      placeholder: "e.g., Code efficiency, Design aesthetics, Usability, etc."
+    validations:
+      required: true
+
+  - type: textarea
+    id: specific-questions
+    attributes:
+      label: Specific Questions
+      description: List any specific questions or concerns you have regarding the item.
+      placeholder: "Any particular areas or questions you want reviewers to focus on..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Provide any additional context or information relevant to the review.
+      placeholder: "Any other information that might be helpful for the reviewers..."
+    validations:
+      required: false

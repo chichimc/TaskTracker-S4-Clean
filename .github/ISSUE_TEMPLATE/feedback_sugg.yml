@@ -1,0 +1,40 @@
+name: Feedback and Suggestions
+description: Gather general feedback or suggestions about the project workflow, team dynamics, etc.
+title: "[FEEDBACK] "
+labels: [feedback]
+body:
+  - type: markdown
+    attributes:
+      value: "# Feedback and Suggestions Form"
+
+  - type: dropdown
+    id: feedback-type
+    attributes:
+      label: Type of Feedback
+      description: Specify the aspect of the project you are providing feedback on.
+      options:
+        - Workflow
+        - Communication
+        - Tools Used
+        - Team Dynamics
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: detailed-feedback
+    attributes:
+      label: Detailed Feedback
+      description: Provide your detailed feedback or suggestions.
+      placeholder: "Your feedback or suggestions in detail..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: improvement-suggestions
+    attributes:
+      label: Suggestions for Improvement
+      description: Any specific suggestions for how things can be improved.
+      placeholder: "Specific ways to improve the aspect you're giving feedback on..."
+    validations:
+      required: false

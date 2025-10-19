@@ -1,0 +1,53 @@
+name: Meeting Minutes
+description: Document the discussions, decisions, and action items from meetings
+title: "[MEETING MINUTES] "
+labels: [meeting, minutes]
+body:
+  - type: markdown
+    attributes:
+      value: "# Meeting Minutes Form"
+
+  - type: input
+    id: meeting-date-time
+    attributes:
+      label: Date and Time of the Meeting
+      description: When did the meeting take place?
+      placeholder: "YYYY-MM-DD at HH:MM"
+    validations:
+      required: true
+
+  - type: textarea
+    id: attendees
+    attributes:
+      label: Attendees
+      description: List the names or usernames of attendees.
+      placeholder: "John Doe, Jane Smith, @username3, etc."
+    validations:
+      required: true
+
+  - type: textarea
+    id: discussion-points
+    attributes:
+      label: Discussion Points
+      description: Summarize the key points discussed in the meeting.
+      placeholder: "Summary of the main topics discussed..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: decisions-made
+    attributes:
+      label: Decisions Made
+      description: List any decisions or conclusions reached during the meeting.
+      placeholder: "Decisions and conclusions made..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: action-items
+    attributes:
+      label: Action Items
+      description: Specify the action items and assignees that came out of the meeting.
+      placeholder: "1. Action Item - Assigned to Person A\n2. Action Item - Assigned to Person B"
+    validations:
+      required: true
